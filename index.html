@@ -163,6 +163,23 @@
       position: relative;
       z-index: 2; /* content above background */
     }
+    /* ✅ Fix popup positioning */
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+  background: rgba(0,0,0,0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Bring popup above everything */
+}
+
+/* ✅ Keep popup content centered */
+.popup-content {
+  position: relative;
+  z-index: 10000;
+}
+
   </style>
 </head>
 
@@ -468,4 +485,5 @@
   </script>
 </body>
 </html>
+
 
