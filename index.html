@@ -11,59 +11,69 @@
       background: linear-gradient(180deg, #ffb6c1, #ff69b4);
       color: #000;
       text-align: center;
-      overflow-x: hidden;
+      overflow: hidden;
+      position: relative;
     }
 
     h1, h2, h3, p, span { color: #000; }
 
-    .hero { padding: 3rem 1rem; }
-    h1 { font-size: 2rem; font-weight: 600; }
+    .hero {
+      padding: 3rem 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
     .message {
       max-width: 600px;
       margin: 1rem auto 2rem;
       font-size: 1.1rem;
       line-height: 1.6;
     }
+
     #countdown {
       font-size: 1.5rem;
       margin-bottom: 2rem;
     }
+
     .days-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 1rem;
       padding: 1rem 2rem 3rem;
+      position: relative;
+      z-index: 2;
     }
+
     .day-box {
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.8);
       border-radius: 10px;
       padding: 1.2rem 0;
       transition: 0.3s;
     }
+
     .day-box.unlocked:hover {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       cursor: pointer;
       box-shadow: 0 0 10px rgba(255,182,193,0.6);
     }
+
     .day-box.locked { opacity: 0.6; }
 
-    /* Popup (lightbox) styles */
+    /* Popup styles */
     .popup {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0);
+      background: rgba(0,0,0,0.7);
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      animation: popupFade 0.5s forwards;
-    }
-
-    /* ✨ Fade for popup background */
-    @keyframes popupFade {
-      from { background: rgba(0,0,0,0); opacity: 0; }
-      to   { background: rgba(0,0,0,0.7); opacity: 1; }
+      z-index: 20;
     }
 
     .popup-content {
@@ -74,13 +84,12 @@
       max-width: 90%;
       width: 400px;
       position: relative;
-      animation: contentFade 0.5s ease;
+      animation: fadeIn 0.4s ease;
     }
 
-    /* ✨ Fade + zoom for popup box */
-    @keyframes contentFade {
+    @keyframes fadeIn {
       from { transform: scale(0.9); opacity: 0; }
-      to   { transform: scale(1); opacity: 1; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .close {
@@ -98,33 +107,41 @@
       margin-bottom: 1rem;
       border-bottom: 30px solid #fff;
     }
-    #popupAudio { width: 100%; margin-top: 1rem; }
 
-    /* 💕 Floating hearts */
+    #popupAudio {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* 💕 Floating hearts background */
     body::before {
       content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       font-size: 2.2rem;
       line-height: 2.5rem;
       text-align: center;
       animation: floatHearts 20s linear infinite;
       z-index: 1;
       pointer-events: none;
-      opacity: 0.5;
-    }
-    @keyframes floatHearts {
-      0%   { transform: translateY(100%) translateX(0) rotate(0deg); }
-      50%  { transform: translateY(50%) translateX(20px) rotate(180deg); }
-      100% { transform: translateY(-120%) translateX(-20px) rotate(360deg); }
+      opacity: 0.25;
     }
 
-    /* ✨ Sparkle overlay (behind hearts) */
+    @keyframes floatHearts {
+      0%   { transform: translateY(100%) rotate(0deg); }
+      50%  { transform: translateY(50%) rotate(180deg); }
+      100% { transform: translateY(-120%) rotate(360deg); }
+    }
+
+    /* ✨ Sparkle overlay */
     @keyframes sparkleMove {
       from { background-position: 0 0, 0 0; }
       to   { background-position: 500px 1000px, 1000px 500px; }
     }
+
     .sparkle-overlay::before {
       content: "";
       position: fixed;
@@ -135,13 +152,12 @@
         radial-gradient(rgba(255,192,203,0.8) 1px, transparent 1px);
       background-size: 3px 3px, 2px 2px;
       animation: sparkleMove 40s linear infinite;
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
       opacity: 0.3;
     }
 
-    body, .hero, .days-grid { position: relative; z-index: 2; }
-    .popup { z-index: 9999; }
+    .hero, .days-grid, .popup { position: relative; z-index: 2; }
   </style>
 </head>
 <body class="sparkle-overlay">
@@ -160,7 +176,7 @@
 
   <section class="days-grid" id="daysGrid"></section>
 
-  <!-- Popups -->
+  <!-- Popup for unlocked days -->
   <div id="popup" class="popup">
     <div class="popup-content">
       <span id="closePopup" class="close">&times;</span>
@@ -170,6 +186,7 @@
     </div>
   </div>
 
+  <!-- Popup for locked days -->
   <div id="lockedPopup" class="popup">
     <div class="popup-content">
       <span id="closeLocked" class="close">&times;</span>
@@ -197,8 +214,8 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    /* ✅ Your 25-day data restored */
-    const dayData = {
+    /* Example data — replace with your full 25-day list */
+     const dayData = {
       25: {
   msg: `My baby,  
   Sometimes I look at you and I’m overwhelmed by how much love my heart can hold for one person ❤️.  
@@ -373,8 +390,6 @@
     song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
   }
 };
-
-
     const startDate = new Date("December 8, 2025 00:00:00");
     const dayCount = 25;
     const grid = document.getElementById('daysGrid');
@@ -396,6 +411,7 @@
         box.innerHTML = `<h3>Day ${i}</h3>`;
         box.onclick = () => openLockedPopup(i);
       }
+
       grid.appendChild(box);
     }
 
@@ -445,4 +461,3 @@
   </script>
 </body>
 </html>
-
