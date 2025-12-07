@@ -116,7 +116,7 @@
       100% { transform: translateY(-120%) rotate(360deg); }
     }
 
-    /* ✨ Sparkle overlay */
+    /* Sparkle overlay */
     @keyframes sparkleMove {
       from { background-position: 0 0, 0 0; }
       to   { background-position: 500px 1000px, 1000px 500px; }
@@ -163,6 +163,7 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       animation: fadeIn 0.4s ease;
       position: relative;
+      display: block;
     }
 
     .popup-content::-webkit-scrollbar {
@@ -501,6 +502,7 @@
     function openLockedPopup(dayNum) {
       lockedMsg.textContent = `Shhh… not yet baby 💌 Day ${dayNum} unlocks at midnight.`;
       lockedPopup.style.display = 'flex';
+      lockedPopup.scrollTo(0, 0);
       document.body.style.overflow = 'hidden';
     }
 
