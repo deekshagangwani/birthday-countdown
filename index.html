@@ -79,7 +79,6 @@
       100% { transform: scale(1); opacity: 0.8; }
     }
 
-    /* 💖 Heart glow animation */
     .unlocked .heart-icon {
       font-size: 1.6rem;
       margin-top: 0.4rem;
@@ -93,7 +92,7 @@
       100% { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff1493; transform: scale(1); }
     }
 
-    /* Floating hearts background */
+    /* 💕 Floating hearts background */
     body::before {
       content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
       position: fixed;
@@ -116,7 +115,7 @@
       100% { transform: translateY(-120%) rotate(360deg); }
     }
 
-    /* Sparkle overlay */
+    /* ✨ Sparkle overlay */
     @keyframes sparkleMove {
       from { background-position: 0 0, 0 0; }
       to   { background-position: 500px 1000px, 1000px 500px; }
@@ -137,20 +136,17 @@
       opacity: 0.3;
     }
 
-    /* 🌸 Popup overlay */
+    /* 🌸 Popup overlay — centered & scrollable */
     .popup {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0,0,0,0.7);
-      align-items: center;
       justify-content: center;
+      align-items: center;
       z-index: 9999;
     }
 
-    /* 🌸 Popup box */
     .popup-content {
       background: #fff;
       color: #000;
@@ -163,7 +159,10 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       animation: fadeIn 0.4s ease;
       position: relative;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: left;
     }
 
     .popup-content::-webkit-scrollbar {
@@ -442,7 +441,6 @@
     song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
   }
 };
-
     for (let i = dayCount; i >= 0; i--) {
       const dayDate = new Date(startDate);
       dayDate.setDate(startDate.getDate() + (dayCount - i));
@@ -452,17 +450,11 @@
 
       if (today >= dayDate) {
         box.classList.add('unlocked');
-        box.innerHTML = `
-          <h3>Day ${i}</h3>
-          <div class="heart-icon">💖</div>
-        `;
+        box.innerHTML = `<h3>Day ${i}</h3><div class="heart-icon">💖</div>`;
         box.onclick = () => openPopup(i);
       } else {
         box.classList.add('locked');
-        box.innerHTML = `
-          <h3>Day ${i}</h3>
-          <div class="lock-icon">🔒</div>
-        `;
+        box.innerHTML = `<h3>Day ${i}</h3><div class="lock-icon">🔒</div>`;
         box.onclick = () => openLockedPopup(i);
       }
 
@@ -485,6 +477,8 @@
       popupMsg.textContent = data.msg;
       popupAudio.src = data.song;
       popup.style.display = 'flex';
+      popup.style.justifyContent = 'center';
+      popup.style.alignItems = 'center';
       popup.scrollTo(0, 0);
       document.body.style.overflow = 'hidden';
     }
@@ -502,6 +496,8 @@
     function openLockedPopup(dayNum) {
       lockedMsg.textContent = `Shhh… not yet baby 💌 Day ${dayNum} unlocks at midnight.`;
       lockedPopup.style.display = 'flex';
+      lockedPopup.style.justifyContent = 'center';
+      lockedPopup.style.alignItems = 'center';
       lockedPopup.scrollTo(0, 0);
       document.body.style.overflow = 'hidden';
     }
