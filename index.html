@@ -6,142 +6,140 @@
   <title>Birthday Countdown for My Forever Choice</title>
   <style>
     body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg, #ffb6c1, #ff69b4);
-  color: #000;                   /* <-- all text black */
-  text-align: center;
-  overflow-x: hidden;
-}
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #ffb6c1, #ff69b4);
+      color: #000;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-/* make all headings black too */
-h1, h2, h3, p, span {
-  color: #000;
-}
+    h1, h2, h3, p, span { color: #000; }
 
-.hero {
-  padding: 3rem 1rem;
-}
-h1 {
-  font-size: 2rem;
-  font-weight: 600;
-}
-.message {
-  max-width: 600px;
-  margin: 1rem auto 2rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-#countdown {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-.days-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
-  padding: 1rem 2rem 3rem;
-}
-.day-box {
-  background: rgba(255,255,255,0.7);
-  border-radius: 10px;
-  padding: 1.2rem 0;
-  transition: 0.3s;
-}
-.day-box.unlocked:hover {
-  background: rgba(255,255,255,0.9);
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(255,182,193,0.6);
-}
-.day-box.locked { opacity: 0.6; }
+    .hero {
+      padding: 3rem 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    .message {
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    #countdown {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+      padding: 1rem 2rem 3rem;
+    }
+    .day-box {
+      background: rgba(255,255,255,0.7);
+      border-radius: 10px;
+      padding: 1.2rem 0;
+      transition: 0.3s;
+    }
+    .day-box.unlocked:hover {
+      background: rgba(255,255,255,0.9);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,182,193,0.6);
+    }
+    .day-box.locked { opacity: 0.6; }
 
-/* Popup (lightbox) styles */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-.popup-content {
-  background: #fff;
-  color: #000;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 90%;
-  width: 400px;
-  position: relative;
-  animation: fadeIn 0.4s ease;
-}
-@keyframes fadeIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-.close {
-  position: absolute;
-  right: 10px; top: 5px;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #000;
-}
-.polaroid {
-  width: 100%;
-  border: 10px solid #fff;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
-  margin-bottom: 1rem;
-  border-bottom: 30px solid #fff;
-}
-#popupAudio { width: 100%; margin-top: 1rem; }
+    /* Popup (lightbox) */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .popup-content {
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 90%;
+      width: 400px;
+      position: relative;
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .close {
+      position: absolute;
+      right: 10px; top: 5px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #000;
+    }
+    .polaroid {
+      width: 100%;
+      border: 10px solid #fff;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+      margin-bottom: 1rem;
+      border-bottom: 30px solid #fff;
+    }
+    #popupAudio { width: 100%; margin-top: 1rem; }
 
-/* 💕 Floating hearts (make sure they show up) */
-body::before {
-  content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 2.2rem;
-  line-height: 2.5rem;
-  text-align: center;
-  animation: floatHearts 20s linear infinite;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.25;
-}
-@keyframes floatHearts {
-  0%   { transform: translateY(100%) rotate(0deg); }
-  50%  { transform: translateY(50%) rotate(180deg); }
-  100% { transform: translateY(-120%) rotate(360deg); }
-}
+    /* 💕 Floating hearts */
+    body::before {
+      content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 2.2rem;
+      line-height: 2.5rem;
+      text-align: center;
+      animation: floatHearts 20s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    @keyframes floatHearts {
+      0%   { transform: translateY(100%) translateX(0) rotate(0deg); }
+      50%  { transform: translateY(50%) translateX(20px) rotate(180deg); }
+      100% { transform: translateY(-120%) translateX(-20px) rotate(360deg); }
+    }
 
-/* ✨ Sparkle overlay */
-@keyframes sparkleMove {
-  from { background-position: 0 0, 0 0; }
-  to   { background-position: 500px 1000px, 1000px 500px; }
-}
-.sparkle-overlay::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image:
-    radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-    radial-gradient(rgba(255,192,203,0.8) 1px, transparent 1px);
-  background-size: 3px 3px, 2px 2px;
-  animation: sparkleMove 40s linear infinite;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.3;
-}
+    /* ✨ Sparkles behind hearts */
+    @keyframes sparkleMove {
+      from { background-position: 0 0, 0 0; }
+      to   { background-position: 500px 1000px, 1000px 500px; }
+    }
+    .sparkle-overlay::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+        radial-gradient(rgba(255,192,203,0.8) 1px, transparent 1px);
+      background-size: 3px 3px, 2px 2px;
+      animation: sparkleMove 40s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.3;
+    }
 
-/* keep content above effects */
-body, .hero, .days-grid, .popup { position: relative; z-index: 1; }
-</style>
+    /* Layer order */
+    body, .hero, .days-grid, .popup { position: relative; z-index: 2; }
+  </style>
 </head>
+
 <body class="sparkle-overlay">
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3" type="audio/mpeg">
@@ -157,272 +155,120 @@ body, .hero, .days-grid, .popup { position: relative; z-index: 1; }
   </div>
 
   <section class="days-grid" id="daysGrid"></section>
-<!-- Popup markup (place just before </body>) -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <span id="closePopup" class="close">&times;</span>
-    <img id="popupImg" class="polaroid" src="" alt="">
-    <p id="popupMsg"></p>
-    <audio id="popupAudio" controls autoplay></audio>
+
+  <!-- Popup windows -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span id="closePopup" class="close">&times;</span>
+      <img id="popupImg" class="polaroid" src="" alt="">
+      <p id="popupMsg"></p>
+      <audio id="popupAudio" controls autoplay></audio>
+    </div>
   </div>
-</div>
-<div id="lockedPopup" class="popup">
-  <div class="popup-content">
-    <span id="closeLocked" class="close">&times;</span>
-    <p id="lockedMsg"></p>
+
+  <div id="lockedPopup" class="popup">
+    <div class="popup-content">
+      <span id="closeLocked" class="close">&times;</span>
+      <p id="lockedMsg"></p>
+    </div>
   </div>
-</div>
 
-<script>
-const countdownElement = document.getElementById('countdown');
-const targetDate = new Date("January 2, 2026 00:00:00").getTime();
+  <script>
+    const countdownElement = document.getElementById('countdown');
+    const targetDate = new Date("January 2, 2026 00:00:00").getTime();
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const diff = targetDate - now;
-  if (diff <= 0) {
-    countdownElement.textContent = "It's Day 0 — Happy Birthday, Mi Amor! 💖";
-    return;
-  }
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        countdownElement.textContent = "It's Day 0 — Happy Birthday, Mi Amor! 💖";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-// Day data (you'll fill these in later)
-const dayData = {
-  25: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    const dayData = {
+      0: {
+        msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤️",
+        img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
+        song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
+      }
+    };
 
-24: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    const startDate = new Date("December 8, 2025 00:00:00");
+    const dayCount = 25;
+    const grid = document.getElementById('daysGrid');
+    const today = new Date();
 
-23: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    for (let i = dayCount; i >= 0; i--) {
+      const dayDate = new Date(startDate);
+      dayDate.setDate(startDate.getDate() + (dayCount - i));
 
-22: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+      const box = document.createElement('div');
+      box.classList.add('day-box');
 
-21: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+      if (today >= dayDate) {
+        box.classList.add('unlocked');
+        box.innerHTML = `<h3>Day ${i}</h3>`;
+        box.onclick = () => openPopup(i);
+      } else {
+        box.classList.add('locked');
+        box.innerHTML = `<h3>Day ${i}</h3>`;
+        box.onclick = () => openLockedPopup(i);
+      }
 
-20: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+      grid.appendChild(box);
+    }
 
-19: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popupImg');
+    const popupMsg = document.getElementById('popupMsg');
+    const popupAudio = document.getElementById('popupAudio');
+    const closePopup = document.getElementById('closePopup');
 
-18: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    function openPopup(dayNum) {
+      const data = dayData[dayNum];
+      if (!data) {
+        alert("You haven’t added a note for Day " + dayNum + " yet 💌");
+        return;
+      }
+      popupImg.src = data.img;
+      popupMsg.textContent = data.msg;
+      popupAudio.src = data.song;
+      popup.style.display = 'flex';
+    }
 
-17: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    closePopup.onclick = () => {
+      popup.style.display = 'none';
+      popupAudio.pause();
+    };
 
-16: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    window.onclick = (e) => {
+      if (e.target === popup) {
+        popup.style.display = 'none';
+        popupAudio.pause();
+      }
+    };
 
-15: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    const lockedPopup = document.getElementById('lockedPopup');
+    const lockedMsg = document.getElementById('lockedMsg');
+    const closeLocked = document.getElementById('closeLocked');
 
-14: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
+    function openLockedPopup(dayNum) {
+      lockedMsg.textContent = `Shhh… not yet baby 💌 Day ${dayNum} unlocks at midnight.`;
+      lockedPopup.style.display = 'flex';
+    }
 
-13: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-12: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-11: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-10: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-9: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-8: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-7: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-6: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-5: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-4: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-3: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-2: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-1: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-  0: {
-    msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤️",
-    img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
-  }
-};
-
-const startDate = new Date("December 8, 2025 00:00:00");
-const dayCount = 25;
-const grid = document.getElementById('daysGrid');
-const today = new Date();
-
-// create day boxes
-for (let i = dayCount; i >= 0; i--) {
-  const dayDate = new Date(startDate);
-  dayDate.setDate(startDate.getDate() + (dayCount - i));
-
-  const box = document.createElement('div');
-  box.classList.add('day-box');
-
-  if (today >= dayDate) {
-    box.classList.add('unlocked');
-    box.innerHTML = `<h3>Day ${i}</h3>`;
-    box.onclick = () => openPopup(i);
-  } else {
-  box.classList.add('locked');
-  box.innerHTML = `<h3>Day ${i}</h3>`;
-  box.onclick = () => openLockedPopup(i);
-}
-
-  grid.appendChild(box);
-}
-
-// popup functions
-const popup = document.getElementById('popup');
-const popupImg = document.getElementById('popupImg');
-const popupMsg = document.getElementById('popupMsg');
-const popupAudio = document.getElementById('popupAudio');
-const closePopup = document.getElementById('closePopup');
-
-function openPopup(dayNum) {
-  const data = dayData[dayNum];
-  if (!data) {
-    alert("You haven’t added a note for Day " + dayNum + " yet 💌");
-    return;
-  }
-  popupImg.src = data.img;
-  popupMsg.textContent = data.msg;
-  popupAudio.src = data.song;
-  popup.style.display = 'flex';
-}
-
-closePopup.onclick = () => {
-  popup.style.display = 'none';
-  popupAudio.pause();
-};
-
-window.onclick = (e) => {
-  if (e.target === popup) {
-    popup.style.display = 'none';
-    popupAudio.pause();
-  }
-};
-
-const lockedPopup = document.getElementById('lockedPopup');
-const lockedMsg = document.getElementById('lockedMsg');
-const closeLocked = document.getElementById('closeLocked');
-
-function openLockedPopup(dayNum) {
-  lockedMsg.textContent = `Shhh… not yet baby 💌 Day ${dayNum} unlocks at midnight.`;
-  lockedPopup.style.display = 'flex';
-}
-
-closeLocked.onclick = () => lockedPopup.style.display = 'none';
-window.addEventListener('click', (e) => {
-  if (e.target === lockedPopup) lockedPopup.style.display = 'none';
-});
-
-</script>
+    closeLocked.onclick = () => lockedPopup.style.display = 'none';
+    window.addEventListener('click', (e) => {
+      if (e.target === lockedPopup) lockedPopup.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
