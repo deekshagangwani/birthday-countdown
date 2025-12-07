@@ -93,7 +93,7 @@
       100% { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff1493; transform: scale(1); }
     }
 
-    /* Floating hearts */
+    /* Floating hearts background */
     body::before {
       content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
       position: fixed;
@@ -116,7 +116,7 @@
       100% { transform: translateY(-120%) rotate(360deg); }
     }
 
-    /* Sparkles */
+    /* ✨ Sparkle overlay */
     @keyframes sparkleMove {
       from { background-position: 0 0, 0 0; }
       to   { background-position: 500px 1000px, 1000px 500px; }
@@ -137,7 +137,7 @@
       opacity: 0.3;
     }
 
-    /* Popup overlay */
+    /* 🌸 Popup overlay */
     .popup {
       display: none;
       position: fixed;
@@ -148,10 +148,9 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      overflow-y: auto;
     }
 
-    /* Popup box */
+    /* 🌸 Popup box */
     .popup-content {
       background: #fff;
       color: #000;
@@ -159,12 +158,11 @@
       border-radius: 10px;
       max-width: 90%;
       width: 400px;
-      margin: 4rem auto;
+      max-height: 85vh;
+      overflow-y: auto;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       animation: fadeIn 0.4s ease;
       position: relative;
-      overflow-y: auto;
-      max-height: 80vh;
     }
 
     .popup-content::-webkit-scrollbar {
@@ -486,6 +484,7 @@
       popupMsg.textContent = data.msg;
       popupAudio.src = data.song;
       popup.style.display = 'flex';
+      popup.scrollTo(0, 0);
       document.body.style.overflow = 'hidden';
     }
 
