@@ -115,70 +115,75 @@
       margin-top: 1rem;
     }
 
-    /* 💕 Floating hearts background */
-    body::before {
-      content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      font-size: 2.2rem;
-      line-height: 2.5rem;
-      text-align: center;
-      animation: floatHearts 20s linear infinite;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.25;
-    }
+    /* 💕 Floating hearts background — behind everything */
+body::before {
+  content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 2.2rem;
+  line-height: 2.5rem;
+  text-align: center;
+  animation: floatHearts 20s linear infinite;
+  z-index: -1;           /* 💖 ensure hearts are behind */
+  pointer-events: none;
+  opacity: 0.25;
+}
 
-    @keyframes floatHearts {
-      0%   { transform: translateY(100%) rotate(0deg); }
-      50%  { transform: translateY(50%) rotate(180deg); }
-      100% { transform: translateY(-120%) rotate(360deg); }
-    }
+@keyframes floatHearts {
+  0%   { transform: translateY(100%) rotate(0deg); }
+  50%  { transform: translateY(50%) rotate(180deg); }
+  100% { transform: translateY(-120%) rotate(360deg); }
+}
 
-    /* ✨ Sparkle overlay */
-    @keyframes sparkleMove {
-      from { background-position: 0 0, 0 0; }
-      to   { background-position: 500px 1000px, 1000px 500px; }
-    }
+/* ✨ Sparkle overlay */
+@keyframes sparkleMove {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 500px 1000px, 1000px 500px; }
+}
 
-    .sparkle-overlay::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image:
-        radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-        radial-gradient(rgba(255,192,203,0.8) 1px, transparent 1px);
-      background-size: 3px 3px, 2px 2px;
-      animation: sparkleMove 40s linear infinite;
-      z-index: 0;              /* ✅ fixed to allow clicks */
-      pointer-events: none;    /* ✅ lets you click through */
-      opacity: 0.3;
-    }
+.sparkle-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(rgba(255,192,203,0.8) 1px, transparent 1px);
+  background-size: 3px 3px, 2px 2px;
+  animation: sparkleMove 40s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+}
 
-    .hero, .days-grid, .popup {
-      position: relative;
-      z-index: 2; /* content above background */
-    }
-    /* ✅ Fix popup positioning */
+/* 💌 Popup overlay */
 .popup {
   display: none;
   position: fixed;
-  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+  inset: 0;
   background: rgba(0,0,0,0.7);
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Bring popup above everything */
+  z-index: 9999;
 }
 
-/* ✅ Keep popup content centered */
+/* 💌 Popup box */
 .popup-content {
   position: relative;
+  background: #fff;
+  color: #000;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  animation: fadeIn 0.4s ease;
   z-index: 10000;
 }
+
 
   </style>
 </head>
@@ -444,6 +449,9 @@
     const popupMsg = document.getElementById('popupMsg');
     const popupAudio = document.getElementById('popupAudio');
     const closePopup = document.getElementById('closePopup');
+    // 💕 Prevent closing popup when clicking inside content
+document.querySelector('.popup-content').addEventListener('click', e => e.stopPropagation());
+
 
     function openPopup(dayNum) {
       const data = dayData[dayNum];
@@ -485,5 +493,6 @@
   </script>
 </body>
 </html>
+
 
 
