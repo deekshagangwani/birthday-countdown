@@ -8,8 +8,9 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(180deg, #4a1d0d, #d17b35);
-      color: #fff7ec;
+      background: linear-gradient(180deg, #ffb6c1, #ff69b4);
+color: #fff0f5;
+
       text-align: center;
       overflow-x: hidden;
     }
@@ -18,7 +19,7 @@
     }
     h1 {
       font-size: 2rem;
-      color: #ffd6a3;
+      color: #ffe4ef;
     }
     .message {
       max-width: 600px;
@@ -37,14 +38,15 @@
       padding: 1rem 2rem 3rem;
     }
     .day-box {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.25);
       border-radius: 10px;
       padding: 1.2rem 0;
       transition: 0.3s;
     }
     .day-box.unlocked:hover {
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.35);
       cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
     }
     .day-box.locked {
       opacity: 0.6;
@@ -98,10 +100,62 @@
   width: 100%;
   margin-top: 1rem;
 }
+/* Floating hearts background */
+body::before {
+  content: "💗 💕 💖 💞 💘 💝";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.15);
+  animation: floatHearts 12s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes floatHearts {
+  0%   { transform: translateY(100%); opacity: 0.4; }
+  50%  { transform: translateY(50%) scale(1.1); opacity: 0.7; }
+  100% { transform: translateY(-100%) scale(1.2); opacity: 0.2; }
+}
+
+/* keep content above the hearts */
+.hero, .days-grid, .popup {
+  position: relative;
+  z-index: 1;
+}
+/* ✨ Soft sparkle / twinkle overlay */
+@keyframes sparkleMove {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 500px 1000px, 1000px 500px; }
+}
+
+.sparkle-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(rgba(255, 192, 203, 0.8) 1px, transparent 1px);
+  background-size: 3px 3px, 2px 2px;
+  animation: sparkleMove 40s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* keep site content above sparkles and hearts */
+body, .hero, .days-grid, .popup {
+  position: relative;
+  z-index: 1;
+}
 
   </style>
 </head>
-<body>
+<body class="sparkle-overlay">
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3" type="audio/mpeg">
   </audio>
