@@ -52,24 +52,11 @@
     }
 
     .day-box {
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       border-radius: 10px;
       padding: 1.2rem 0;
       transition: 0.3s;
     }
-    .lock-icon {
-  font-size: 1.5rem;
-  margin-top: 0.4rem;
-  color: #ff1493; /* cute pink */
-  animation: gentlePulse 1.8s infinite ease-in-out;
-}
-
-@keyframes gentlePulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
-}
-
 
     .day-box.unlocked:hover {
       background: rgba(255,255,255,0.95);
@@ -77,9 +64,36 @@
       box-shadow: 0 0 10px rgba(255,182,193,0.6);
     }
 
-    .day-box.locked { opacity: 0.6; }
+    .day-box.locked { opacity: 0.8; }
 
-    /* 💖 Floating hearts behind everything */
+    .lock-icon {
+      font-size: 1.5rem;
+      margin-top: 0.4rem;
+      color: #ff1493;
+      animation: gentlePulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes gentlePulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+
+    /* 💖 Heart glow animation */
+    .unlocked .heart-icon {
+      font-size: 1.6rem;
+      margin-top: 0.4rem;
+      color: #ff1493;
+      animation: glowPulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff1493; transform: scale(1); }
+      50% { text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493; transform: scale(1.3); }
+      100% { text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff1493; transform: scale(1); }
+    }
+
+    /* Floating hearts */
     body::before {
       content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
       position: fixed;
@@ -87,7 +101,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      font-size: 2.2rem;
+      font-size: 2rem;
       line-height: 2.5rem;
       text-align: center;
       animation: floatHearts 20s linear infinite;
@@ -102,7 +116,7 @@
       100% { transform: translateY(-120%) rotate(360deg); }
     }
 
-    /* ✨ Sparkles */
+    /* Sparkles */
     @keyframes sparkleMove {
       from { background-position: 0 0, 0 0; }
       to   { background-position: 500px 1000px, 1000px 500px; }
@@ -123,43 +137,43 @@
       opacity: 0.3;
     }
 
-    /* 🌸 Popup overlay that covers everything */
+    /* Popup overlay */
     .popup {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(0,0,0,0.7);
       align-items: center;
       justify-content: center;
       z-index: 9999;
+      overflow-y: auto;
     }
 
-    /* 🌸 Popup box */
+    /* Popup box */
     .popup-content {
-  background: #fff;
-  color: #000;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 90%;
-  width: 400px;
-  max-height: 90vh;       /* 🌸 limit height to screen */
-  overflow-y: auto;        /* 🌸 allow scrolling inside */
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  animation: fadeIn 0.4s ease;
-  position: relative;
-}
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 90%;
+      width: 400px;
+      margin: 4rem auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: fadeIn 0.4s ease;
+      position: relative;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
 
     .popup-content::-webkit-scrollbar {
-  width: 8px;
-}
-.popup-content::-webkit-scrollbar-thumb {
-  background: #ff69b4;
-  border-radius: 4px;
-}
-
+      width: 8px;
+    }
+    .popup-content::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 4px;
+    }
 
     @keyframes fadeIn {
       from { transform: scale(0.9); opacity: 0; }
@@ -249,10 +263,15 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
+    const startDate = new Date("December 8, 2025 00:00:00");
+    const dayCount = 25;
+    const grid = document.getElementById('daysGrid');
+    const today = new Date();
+
     const dayData = {
       25: {
   msg: `My baby,  
-  Sometimes I look at you and I’m overwhelmed by how much love my heart can hold for one person ❤️.  
+  Sometimes I look at you and I’m overwhelmed by how much love my heart can hold for one person ❤.  
   I don’t know how to explain it, but you make everything in my life softer. Even on the days when I feel tired, confused,  
   or unsure of myself, loving you feels like the one thing that is always clear, always steady, always right ✨.  
   You are the calm that my soul leans into, the warmth that fills every quiet space inside me 🫶.  
@@ -268,7 +287,7 @@
   My heart has chosen you in every possible way, and every single day I keep falling for you all over again 💞.  
 
   Always yours,  
-  Deeksha ❤️`,
+  Deeksha ❤`,
   img: "https://github.com/deekshagangwani/birthday-countdown/raw/main/4.jpg",
   song:"https://github.com/deekshagangwani/birthday-countdown/raw/main/naam%20chale.mp3"
 },
@@ -419,16 +438,11 @@
   },
 
   0: {
-    msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤️",
+    msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤",
     img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
     song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
   }
 };
-
-    const startDate = new Date("December 8, 2025 00:00:00");
-    const dayCount = 25;
-    const grid = document.getElementById('daysGrid');
-    const today = new Date();
 
     for (let i = dayCount; i >= 0; i--) {
       const dayDate = new Date(startDate);
@@ -439,18 +453,19 @@
 
       if (today >= dayDate) {
         box.classList.add('unlocked');
-        box.innerHTML = `<h3>Day ${i}</h3>`;
+        box.innerHTML = `
+          <h3>Day ${i}</h3>
+          <div class="heart-icon">💖</div>
+        `;
         box.onclick = () => openPopup(i);
-      } 
-      else {
-  box.classList.add('locked');
-  box.innerHTML = `
-    <h3>Day ${i}</h3>
-    <div class="lock-icon">🔒</div>
-  `;
-  box.onclick = () => openLockedPopup(i);
-}
-
+      } else {
+        box.classList.add('locked');
+        box.innerHTML = `
+          <h3>Day ${i}</h3>
+          <div class="lock-icon">🔒</div>
+        `;
+        box.onclick = () => openLockedPopup(i);
+      }
 
       grid.appendChild(box);
     }
@@ -460,9 +475,6 @@
     const popupMsg = document.getElementById('popupMsg');
     const popupAudio = document.getElementById('popupAudio');
     const closePopup = document.getElementById('closePopup');
-
-    // 💖 Prevent click inside popup from closing it
-    document.querySelector('.popup-content').addEventListener('click', e => e.stopPropagation());
 
     function openPopup(dayNum) {
       const data = dayData[dayNum];
@@ -474,21 +486,13 @@
       popupMsg.textContent = data.msg;
       popupAudio.src = data.song;
       popup.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // stop scrolling behind popup
+      document.body.style.overflow = 'hidden';
     }
 
     closePopup.onclick = () => {
       popup.style.display = 'none';
       popupAudio.pause();
       document.body.style.overflow = 'auto';
-    };
-
-    window.onclick = (e) => {
-      if (e.target === popup) {
-        popup.style.display = 'none';
-        popupAudio.pause();
-        document.body.style.overflow = 'auto';
-      }
     };
 
     const lockedPopup = document.getElementById('lockedPopup');
@@ -506,13 +510,14 @@
       document.body.style.overflow = 'auto';
     };
 
-    window.addEventListener('click', (e) => {
-      if (e.target === lockedPopup) {
+    window.onclick = (e) => {
+      if (e.target === popup || e.target === lockedPopup) {
+        popup.style.display = 'none';
         lockedPopup.style.display = 'none';
+        popupAudio.pause();
         document.body.style.overflow = 'auto';
       }
-    });
+    };
   </script>
 </body>
 </html>
-
