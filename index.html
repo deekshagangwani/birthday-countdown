@@ -273,13 +273,7 @@
     </div>
   </div>
 
-  <!-- Popup for locked days -->
-  <div id="lockedPopup" class="popup">
-    <div class="popup-content">
-      <span id="closeLocked" class="close">&times;</span>
-      <p id="lockedMsg"></p>
-    </div>
-  </div>
+  
 
   <script>
     const countdownElement = document.getElementById('countdown');
@@ -495,7 +489,8 @@
       } else {
         box.classList.add('locked');
         box.innerHTML = `<h3>Day ${i}</h3><div class="lock-icon">🔒</div>`;
-        box.onclick = () => openLockedPopup(i);
+        box.onclick = () => alert(`Shhh… not yet baby 💌 Day ${i} unlocks at midnight.`);
+
       }
 
       grid.appendChild(box);
@@ -534,18 +529,7 @@
       document.body.style.overflow = 'auto';
     };
 
-    const lockedPopup = document.getElementById('lockedPopup');
-    const lockedMsg = document.getElementById('lockedMsg');
-    const closeLocked = document.getElementById('closeLocked');
-
-    function openLockedPopup(dayNum) {
-      lockedMsg.textContent = `Shhh… not yet baby💌 Day ${dayNum} unlocks at midnight.`;
-      lockedPopup.style.display = 'flex';
-      lockedPopup.style.justifyContent = 'center';
-      lockedPopup.style.alignItems = 'center';
-      lockedPopup.scrollTo(0, 0);
-      document.body.style.overflow = 'hidden';
-    }
+    
 
     closeLocked.onclick = () => {
       lockedPopup.style.display = 'none';
@@ -555,7 +539,6 @@
     window.onclick = (e) => {
       if (e.target === popup || e.target === lockedPopup) {
         popup.style.display = 'none';
-        lockedPopup.style.display = 'none';
         popupAudio.pause();
         document.body.style.overflow = 'auto';
       }
@@ -563,6 +546,7 @@
   </script>
 </body>
 </html>
+
 
 
 
