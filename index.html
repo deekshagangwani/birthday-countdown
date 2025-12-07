@@ -16,13 +16,8 @@
 
     h1, h2, h3, p, span { color: #000; }
 
-    .hero {
-      padding: 3rem 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      font-weight: 600;
-    }
+    .hero { padding: 3rem 1rem; }
+    h1 { font-size: 2rem; font-weight: 600; }
     .message {
       max-width: 600px;
       margin: 1rem auto 2rem;
@@ -52,17 +47,25 @@
     }
     .day-box.locked { opacity: 0.6; }
 
-    /* Popup (lightbox) */
+    /* Popup (lightbox) styles */
     .popup {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0);
       align-items: center;
       justify-content: center;
-      z-index: 10;
+      z-index: 9999;
+      animation: popupFade 0.5s forwards;
     }
+
+    /* ✨ Fade for popup background */
+    @keyframes popupFade {
+      from { background: rgba(0,0,0,0); opacity: 0; }
+      to   { background: rgba(0,0,0,0.7); opacity: 1; }
+    }
+
     .popup-content {
       background: #fff;
       color: #000;
@@ -71,12 +74,15 @@
       max-width: 90%;
       width: 400px;
       position: relative;
-      animation: fadeIn 0.4s ease;
+      animation: contentFade 0.5s ease;
     }
-    @keyframes fadeIn {
+
+    /* ✨ Fade + zoom for popup box */
+    @keyframes contentFade {
       from { transform: scale(0.9); opacity: 0; }
       to   { transform: scale(1); opacity: 1; }
     }
+
     .close {
       position: absolute;
       right: 10px; top: 5px;
@@ -84,6 +90,7 @@
       cursor: pointer;
       color: #000;
     }
+
     .polaroid {
       width: 100%;
       border: 10px solid #fff;
@@ -97,10 +104,8 @@
     body::before {
       content: "💗 💕 💖 💞 💘 💝 💗 💕 💖 💞 💘 💝";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       font-size: 2.2rem;
       line-height: 2.5rem;
       text-align: center;
@@ -115,12 +120,12 @@
       100% { transform: translateY(-120%) translateX(-20px) rotate(360deg); }
     }
 
-    /* ✨ Sparkles behind hearts */
+    /* ✨ Sparkle overlay (behind hearts) */
     @keyframes sparkleMove {
       from { background-position: 0 0, 0 0; }
       to   { background-position: 500px 1000px, 1000px 500px; }
     }
-    .sparkle-overlay::after {
+    .sparkle-overlay::before {
       content: "";
       position: fixed;
       top: 0; left: 0;
@@ -135,11 +140,10 @@
       opacity: 0.3;
     }
 
-    /* Layer order */
-    body, .hero, .days-grid, .popup { position: relative; z-index: 2; }
+    body, .hero, .days-grid { position: relative; z-index: 2; }
+    .popup { z-index: 9999; }
   </style>
 </head>
-
 <body class="sparkle-overlay">
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3" type="audio/mpeg">
@@ -156,7 +160,7 @@
 
   <section class="days-grid" id="daysGrid"></section>
 
-  <!-- Popup windows -->
+  <!-- Popups -->
   <div id="popup" class="popup">
     <div class="popup-content">
       <span id="closePopup" class="close">&times;</span>
@@ -193,13 +197,176 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
+    /* ✅ Your 25-day data restored */
     const dayData = {
-      0: {
-        msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤️",
-        img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
-        song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
-      }
-    };
+      25: {
+    msg: "My baby,Sometimes I look at you and I’m overwhelmed by how much love my heart can hold for one person ❤️. 
+      I don’t know how to explain it, but you make everything in my life softer. Even on the days when I feel tired, confused, 
+      or unsure of myself, loving you feels like the one thing that is always clear, always steady, always right ✨. You are 
+      the calm that my soul leans into, the warmth that fills every quiet space inside me 🫶. You’ve taught me that love isn’t 
+      loud or showy — it’s gentle, patient, and consistent 🤍. It’s in the way you listen to me, the way you choose me even when 
+      things aren’t perfect, the way you understand the parts of me I don’t say out loud. You make me feel seen in a way I didn’t 
+      know was possible. With you, I am never too much, never too quiet, never too emotional — I am simply me, and that is enough 💗.
+      I wish you could see yourself the way I see you. You are kind, thoughtful, strong, and so full of a quiet goodness that makes the world 
+      feel safer 🌙. Being loved by you is the biggest blessing of my life. And I hope you never forget this: I am here. With you, for you, always. 
+      My heart has chosen you in every possible way, and every single day I keep falling for you all over again 💞.
+      Always yours,
+      Deeksha",
+    img: ""C:\Users\Lenovo\OneDrive\Desktop\photos\4.jpg"",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+24: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+23: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+22: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+21: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+20: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+19: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+18: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+17: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+16: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+15: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+14: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+13: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+12: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+11: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+10: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+9: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+8: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+7: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+6: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+5: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+4: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+3: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+2: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+1: {
+    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
+    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+  },
+
+  0: {
+    msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤️",
+    img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
+    song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
+  }
+};
+
 
     const startDate = new Date("December 8, 2025 00:00:00");
     const dayCount = 25;
@@ -222,7 +389,6 @@
         box.innerHTML = `<h3>Day ${i}</h3>`;
         box.onclick = () => openLockedPopup(i);
       }
-
       grid.appendChild(box);
     }
 
