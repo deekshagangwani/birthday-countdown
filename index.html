@@ -495,35 +495,34 @@ Rasmalai 💋`,
     song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
   }
 };
-    for (let i = dayCount; i >= 0; i--) {
-      const dayDate = new Date(startDate);
-      dayDate.setDate(startDate.getDate() + (dayCount - i));
+    // 🌸 Create day boxes
+for (let i = 1; i <= dayCount; i++) {
+  const dayDate = new Date(startDate);
+  dayDate.setDate(startDate.getDate() + (i - 1));
 
-      const box = document.createElement('div');
-      box.classList.add('day-box');
+  const box = document.createElement("div");
+  box.classList.add("day-box");
 
-    // 💖 Unlock logic — starts Dec 8 2025, ends Jan 2 2026
-const unlockOffset = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)); // how many days have passed
-const dayNumber = dayCount - i; // 0 for Dec8, 25 for Jan2
+  // Calculate how many days since start
+  const unlockOffset = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
 
-if (dayNumber <= unlockOffset) {
-  // ✅ Unlocked days (up to today)
-  box.classList.add('unlocked');
-  box.innerHTML = `<h3>Day ${i}</h3><div class="heart-icon">💖</div>`;
-  box.onclick = () => openPopup(i);
-} else {
-  // 🔒 Locked (future)
-  box.classList.add('locked');
-  box.innerHTML = `<h3>Day ${i}</h3><div class="lock-icon">🔒</div>`;
-  box.onclick = () => alert(\`Shhh… not yet baby 💌 Day ${i} unlocks at midnight.\`);
+  // 💖 Unlock logic
+  if (i <= unlockOffset + 1) {
+    // ✅ Unlocked days (today and before)
+    box.classList.add("unlocked");
+    box.innerHTML = `<h3>Day ${dayCount - (i - 1)}</h3><div class="heart-icon">💖</div>`;
+    box.onclick = () => openPopup(dayCount - (i - 1));
+  } else {
+    // 🔒 Locked (future)
+    box.classList.add("locked");
+    box.innerHTML = `<h3>Day ${dayCount - (i - 1)}</h3><div class="lock-icon">🔒</div>`;
+    box.onclick = () =>
+      alert(`Shhh… not yet baby 💌 Day ${dayCount - (i - 1)} unlocks at midnight.`);
+  }
+
+  grid.appendChild(box);
 }
 
-
-
-
-
-      grid.appendChild(box);
-    }
 
     const popup = document.getElementById('popup');
     const popupImg = document.getElementById('popupImg');
@@ -568,6 +567,7 @@ if (dayNumber <= unlockOffset) {
   </script>
 </body>
 </html>
+
 
 
 
