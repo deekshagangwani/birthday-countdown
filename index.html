@@ -505,17 +505,18 @@ Rasmalai 💋`,
      // 🕒 Unlock days gradually starting from Dec 8, 2025
 const unlockOffset = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
 
-if (i >= dayCount - unlockOffset) {
+if (i <= unlockOffset) {
   // ✅ Unlocked days (today and earlier)
   box.classList.add('unlocked');
   box.innerHTML = `<h3>Day ${i}</h3><div class="heart-icon">💖</div>`;
   box.onclick = () => openPopup(i);
 } else {
-  // 🔒 Locked days (future ones)
+  // 🔒 Locked days (future)
   box.classList.add('locked');
   box.innerHTML = `<h3>Day ${i}</h3><div class="lock-icon">🔒</div>`;
-  box.onclick = () => alert(`Shhh… not yet baby 💌 Day ${i} unlocks at midnight.`);
+  box.onclick = () => alert(\`Shhh… not yet baby 💌 Day ${i} unlocks at midnight.\`);
 }
+
 
 
 
@@ -565,6 +566,7 @@ if (i >= dayCount - unlockOffset) {
   </script>
 </body>
 </html>
+
 
 
 
