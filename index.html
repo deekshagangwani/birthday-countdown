@@ -276,57 +276,63 @@
   
 
   <script>
-    const countdownElement = document.getElementById('countdown');
-    const targetDate = new Date("January 2, 2026 00:00:00").getTime();
+const countdownElement = document.getElementById("countdown");
+const targetDate = new Date("January 2, 2026 00:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-      if (diff <= 0) {
-        countdownElement.textContent = "It's Day 0 — Happy Birthday, Mi Amor! 💖";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+// ⏳ Countdown timer
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+  if (diff <= 0) {
+    countdownElement.textContent = "It's Day 0 — Happy Birthday, Mi Amor! 💖";
+    return;
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-    const startDate = new Date("December 8, 2025 00:00:00");
-    const dayCount = 25;
-    const grid = document.getElementById('daysGrid');
-    const today = new Date();
+const startDate = new Date("December 8, 2025 00:00:00");
+const dayCount = 25;
+const grid = document.getElementById("daysGrid");
 
-    const dayData = {
-      25: {
-  msg: `My baby,  
-  Sometimes I look at you and I’m overwhelmed by how much love my heart can hold for one person ❤.  
-  I don’t know how to explain it, but you make everything in my life softer. Even on the days when I feel tired, confused,  
-  or unsure of myself, loving you feels like the one thing that is always clear, always steady, always right ✨.  
-  You are the calm that my soul leans into, the warmth that fills every quiet space inside me 🫶.  
-  You’ve taught me that love isn’t loud or showy — it’s gentle, patient, and consistent 🤍.  
-  It’s in the way you listen to me, the way you choose me even when things aren’t perfect,  
-  the way you understand the parts of me I don’t say out loud.  
-  You make me feel seen in a way I didn’t know was possible.  
-  With you, I am never too much, never too quiet, never too emotional — I am simply me, and that is enough 💗.  
-  I wish you could see yourself the way I see you.  
-  You are kind, thoughtful, strong, and so full of a quiet goodness that makes the world feel safer 🌙.  
-  Being loved by you is the biggest blessing of my life.  
-  And I hope you never forget this: I am here. With you, for you, always.  
-  My heart has chosen you in every possible way, and every single day I keep falling for you all over again 💞.  
+// 💕 For testing: you can uncomment this line to pretend it's a future date
+// const today = new Date("December 10, 2025");
+const today = new Date();
 
-  Always yours,  
-  Deeksha ❤`,
-  img: "https://github.com/deekshagangwani/birthday-countdown/raw/main/4.jpg",
-  song:"https://github.com/deekshagangwani/birthday-countdown/raw/main/naam%20chale.mp3"
-},
+const unlockOffset = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
 
+// 💌 All your notes, pictures & songs stay here:
+const dayData = {
+  25: {
+    msg: `My baby,  
+    Sometimes I look at you and I’m overwhelmed by how much love my heart can hold for one person ❤.  
+    I don’t know how to explain it, but you make everything in my life softer. Even on the days when I feel tired, confused,  
+    or unsure of myself, loving you feels like the one thing that is always clear, always steady, always right ✨.  
+    You are the calm that my soul leans into, the warmth that fills every quiet space inside me 🫶.  
+    You’ve taught me that love isn’t loud or showy — it’s gentle, patient, and consistent 🤍.  
+    It’s in the way you listen to me, the way you choose me even when things aren’t perfect,  
+    the way you understand the parts of me I don’t say out loud.  
+    You make me feel seen in a way I didn’t know was possible.  
+    With you, I am never too much, never too quiet, never too emotional — I am simply me, and that is enough 💗.  
+    I wish you could see yourself the way I see you.  
+    You are kind, thoughtful, strong, and so full of a quiet goodness that makes the world feel safer 🌙.  
+    Being loved by you is the biggest blessing of my life.  
+    And I hope you never forget this: I am here. With you, for you, always.  
+    My heart has chosen you in every possible way, and every single day I keep falling for you all over again 💞.  
 
-24: {
-  msg: `Mi Amor,  
+    Always yours,  
+    Deeksha ❤`,
+    img: "https://github.com/deekshagangwani/birthday-countdown/raw/main/4.jpg",
+    song: "https://github.com/deekshagangwani/birthday-countdown/raw/main/naam%20chale.mp3",
+  },
+
+  24: {
+    msg: `Mi Amor,  
 
 I look at this picture, our first moment captured in time and honestly, it breaks me a little 🥺.  
 It breaks me because I see a woman who had no idea how completely her life was about to be consumed by the man holding her. You obviously. 🫀  
@@ -347,226 +353,78 @@ I need you like I need air.
 I am entirely, vulnerably, and desperately yours. 🔒❤️♾️  
 
 Rasmalai 💋`,
-  img: "https://raw.githubusercontent.com/deekshagangwani/birthday-countdown/main/16.jpg",
-  song: "https://raw.githubusercontent.com/deekshagangwani/birthday-countdown/main/Pehle%20Bhi%20Main.mp3"
-},
-
-23: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-22: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-21: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-20: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-19: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-18: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-17: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-16: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-15: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-14: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-13: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-12: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-11: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-10: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-9: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-8: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-7: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-6: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-5: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-4: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-3: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-2: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
-  },
-
-1: {
-    msg: "25 days to go, mi amor — this journey begins with love and light ✨",
-    img: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2023/02/06/audio_04c1d9c366.mp3?filename=warm-love-theme.mp3"
+    img: "https://raw.githubusercontent.com/deekshagangwani/birthday-countdown/main/16.jpg",
+    song: "https://raw.githubusercontent.com/deekshagangwani/birthday-countdown/main/Pehle%20Bhi%20Main.mp3",
   },
 
   0: {
     msg: "Happy Birthday, mi rey! You are my forever choice, today and always ❤",
     img: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800",
-    song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3"
-  }
+    song: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b7e9b5d07.mp3?filename=romantic-guitar-background-112841.mp3",
+  },
 };
-    // 🌸 Create day boxes
-for (let i = 1; i <= dayCount; i++) {
-  const dayDate = new Date(startDate);
-  dayDate.setDate(startDate.getDate() + (i - 1));
 
+// 🎁 Create all the day boxes (25 → 0)
+for (let i = dayCount; i >= 0; i--) {
   const box = document.createElement("div");
   box.classList.add("day-box");
 
-  // Calculate how many days since start
-  const unlockOffset = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-
-  // 💖 Unlock logic
-  if (i <= unlockOffset + 1) {
-    // ✅ Unlocked days (today and before)
+  if (dayCount - i <= unlockOffset) {
+    // 💖 Unlocked days
     box.classList.add("unlocked");
-    box.innerHTML = `<h3>Day ${dayCount - (i - 1)}</h3><div class="heart-icon">💖</div>`;
-    box.onclick = () => openPopup(dayCount - (i - 1));
+    box.innerHTML = `<h3>Day ${i}</h3><div class="heart-icon">💖</div>`;
+    box.onclick = () => openPopup(i);
   } else {
-    // 🔒 Locked (future)
+    // 🔒 Locked days
     box.classList.add("locked");
-    box.innerHTML = `<h3>Day ${dayCount - (i - 1)}</h3><div class="lock-icon">🔒</div>`;
+    box.innerHTML = `<h3>Day ${i}</h3><div class="lock-icon">🔒</div>`;
     box.onclick = () =>
-      alert(`Shhh… not yet baby 💌 Day ${dayCount - (i - 1)} unlocks at midnight.`);
+      alert(`Shhh… not yet baby 💌 Day ${i} unlocks at midnight.`);
   }
 
   grid.appendChild(box);
 }
 
+// 💕 Popup Logic
+const popup = document.getElementById("popup");
+const popupImg = document.getElementById("popupImg");
+const popupMsg = document.getElementById("popupMsg");
+const popupAudio = document.getElementById("popupAudio");
+const closePopup = document.getElementById("closePopup");
 
-    const popup = document.getElementById('popup');
-    const popupImg = document.getElementById('popupImg');
-    const popupMsg = document.getElementById('popupMsg');
-    const popupAudio = document.getElementById('popupAudio');
-    const closePopup = document.getElementById('closePopup');
-
-    function openPopup(dayNum) {
+function openPopup(dayNum) {
   const data = dayData[dayNum];
   if (!data) {
     alert("You haven’t added a note for Day " + dayNum + " yet 💌");
     return;
   }
 
-  // ✅ Load content and preserve line breaks
   popupImg.src = data.img;
   popupMsg.innerHTML = data.msg.replace(/\n/g, "<br>");
   popupAudio.src = data.song;
 
-  // ✅ Show popup centered
-  popup.style.display = 'flex';
+  popup.style.display = "flex";
   popup.scrollTo(0, 0);
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = "hidden";
 }
 
-
-    closePopup.onclick = () => {
-      popup.style.display = 'none';
-      popupAudio.pause();
-      document.body.style.overflow = 'auto';
-    };
-
-  
-    window.onclick = (e) => {
-      if (e.target === popup) {
-  popup.style.display = 'none';
+closePopup.onclick = () => {
+  popup.style.display = "none";
   popupAudio.pause();
-  document.body.style.overflow = 'auto';
-}
+  document.body.style.overflow = "auto";
+};
 
-    };
-  </script>
+window.onclick = (e) => {
+  if (e.target === popup) {
+    popup.style.display = "none";
+    popupAudio.pause();
+    document.body.style.overflow = "auto";
+  }
+};
+</script>
 </body>
 </html>
+
 
 
 
