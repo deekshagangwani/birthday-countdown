@@ -509,9 +509,6 @@
     return;
   }
 
-  // ✅ Close locked popup if it was open
-  lockedPopup.style.display = 'none';
-
   // ✅ Load content and preserve line breaks
   popupImg.src = data.img;
   popupMsg.innerHTML = data.msg.replace(/\n/g, "<br>");
@@ -523,29 +520,26 @@
   document.body.style.overflow = 'hidden';
 }
 
+
     closePopup.onclick = () => {
       popup.style.display = 'none';
       popupAudio.pause();
       document.body.style.overflow = 'auto';
     };
 
-    
-
-    closeLocked.onclick = () => {
-      lockedPopup.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    };
-
+  
     window.onclick = (e) => {
-      if (e.target === popup || e.target === lockedPopup) {
-        popup.style.display = 'none';
-        popupAudio.pause();
-        document.body.style.overflow = 'auto';
-      }
+      if (e.target === popup) {
+  popup.style.display = 'none';
+  popupAudio.pause();
+  document.body.style.overflow = 'auto';
+}
+
     };
   </script>
 </body>
 </html>
+
 
 
 
